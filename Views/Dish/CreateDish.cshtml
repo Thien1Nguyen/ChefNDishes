@@ -1,0 +1,50 @@
+@model Dish
+
+@await Html.PartialAsync("_NavBar")
+<h1>Add a new Dish!</h1>
+<form
+    asp-controller="Dish"
+    asp-action="CreateDish"
+    method="post"
+    >
+    <div class="mb-3">
+        <label asp-for="Name">Name </label>
+        <span class="text-danger" asp-validation-for="Name"></span>
+        <input type="text" asp-for="Name" class="form-control w-50"> 
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Calories">Calories </label>
+        <span class="text-danger" asp-validation-for="Calories"></span>
+        <input type="text" asp-for="Calories" class="form-control w-50"> 
+    </div>
+
+    <div class="mb-3">
+        
+        <label asp-for="Tastiness">Tastiness</label>
+        <span class="text-danger" asp-validation-for="Tastiness"></span> 
+        <select asp-for="Tastiness" class="form-control w-50">
+            <option value ="" disabled selected >Give the dish a rating </option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ChefId">Chef's Name <span class="text-danger" asp-validation-for="ChefId"></span> </label>
+        <select asp-for="ChefId">
+            @{
+                if(ViewBag.ChefsList != null){
+                    foreach (Chef chef in ViewBag.ChefsList)
+                    {
+                        <option value="@chef.ChefId">@chef.FirstName @chef.LastName </option>
+                    }
+                }
+            }
+        </select>
+    </div>
+    <button>Send</button>
+</form>
