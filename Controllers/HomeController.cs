@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using ChefNDishes.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChefNDishes.Controllers;
 
@@ -18,7 +19,7 @@ public class HomeController : Controller
     [HttpGet("")]
     public IActionResult Index()
     {
-        List<Chef> AllChefs = _context.Chefs.ToList();
+        List<Chef> AllChefs = _context.Chefs.Include(chef => chef.AllDishes).ToList();
         return View("Index", AllChefs);
     }
 
