@@ -18,7 +18,7 @@
         {
             <tr>
                 <td>@dish.Name</td>
-                <td>@dish.Creator.FirstName @dish.Creator.LastName </td>
+                <td>@dish.Creator?.FirstName @dish.Creator?.LastName </td>
                 <td>@dish.Tastiness</td>
                 <td>@dish.Calories</td>
             </tr>

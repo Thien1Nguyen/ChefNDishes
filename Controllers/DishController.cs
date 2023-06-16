@@ -28,7 +28,7 @@ public class DishController : Controller
     [HttpGet("dishes/new")]
     public IActionResult NewDish()
     {
-        List<Chef> allChefs = _context.Chefs.ToList(); 
+        ViewBag.ChefsList = _context.Chefs.ToList(); 
         return View("CreateDish");
     }
 
@@ -36,6 +36,7 @@ public class DishController : Controller
     public IActionResult CreateDish(Dish newDish)
     {
         if(!ModelState.IsValid){
+            ViewBag.ChefsList = _context.Chefs.ToList(); 
             return View("CreateDish");
         }
 

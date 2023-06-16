@@ -20,7 +20,9 @@
             {
                 <tr>
                     <td>@chef.FirstName @chef.LastName</td>
-                    <td>@chef.DBO</td>
+                    @{ int age = DateTime.Now.Year - chef.DBO.Year;
+                        <td>@age</td> 
+                    }
                     <td>@chef.AllDishes.Count()</td>
                 </tr>
             }
